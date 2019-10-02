@@ -52,6 +52,10 @@ function drawStackedBar(values, options) {
 * @return {Number[]} Full array with all inner arrays sorted descending.
 */
 function sortInnerArrays(data) {
+  if (!Array.isArray(data)) {
+    throw new Error ('sortInnerArrays @param data | Invalid data type');
+  }
+
   let tData = [...data];
 
   for (let i = 0; i < tData.length; i++) {
@@ -67,6 +71,10 @@ function sortInnerArrays(data) {
 * @return Highest value in the 2D array.
 */
 function findMax2D(values) {
+  if (!Array,isArray(values)) {
+    throw new Error ('findMax2D @param data | Invalid data type');
+  }
+
   let tValues = [...values];
   let MAX;
   if (Array.isArray(tValues[0]))
