@@ -1,4 +1,4 @@
-const MAX;
+let MAX; //Used mutable because java is unable to initialize a constant outside of the same scope/block.
 
 /*
 * Generate bar chart
