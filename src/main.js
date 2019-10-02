@@ -139,6 +139,7 @@ const testOptions = {
   title: 'Test Chart',
   titleColour: 'white',
   barColour: 'red',
+  stackColours: [],
   barTextAlign: 'top',
   barSpacing: 5,
   barAxes: 'x',
