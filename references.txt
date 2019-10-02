@@ -5,6 +5,8 @@ Flexbox guide to assist with spacing/layout
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 
+Quick search to figure out how to include JQuery
+https://code.jquery.com/
 
 JQuery to append to pages
 https://www.w3schools.com/jquery/jquery_dom_add.asp

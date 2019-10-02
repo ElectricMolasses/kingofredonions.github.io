@@ -1,4 +1,4 @@
-let MAX; //Used mutable because java is unable to initialize a constant outside of the same scope/block.
+let MAX = 10; //Used mutable because java is unable to initialize a constant outside of the same scope/block.
 
 /*
 * Generate bar chart
@@ -38,8 +38,17 @@ function drawBar(value, options) {
     throw new Error ('drawBar @param value | Invalid data type');
   }
 
-  let bar = document.createElement("div");
-  bar.attr('height', String.toString(relativeHeight(value, options)));
+  let bar = $("<div></div>");
+  bar.height(relativeHeight(value, options));
+  bar.css('background-color', 'red');
+}
+
+function jQueryTest(value) {
+  let bar = $("<div></div>");
+  bar.height(relativeHeight(value, {height: 200}));
+  bar.width('10');
+  bar.css('background-color', 'red');
+  $('#bar-form').append(bar);
 }
 
 function drawStackedBar(values, options) {
