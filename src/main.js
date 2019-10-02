@@ -1,3 +1,5 @@
+const MAX;
+
 /*
 * Generate bar chart
 * @param {Number[]}  data      Array of numbers, may be 2D for 'stacked' bars.
@@ -15,7 +17,7 @@ function drawBarChart(data, options, element) {
     throw new Error('drawBarChart @param data | Invalid data type');
   }
   tData = sortInnerArrays([...data]);
-  const MAX = findMax2D(tData);
+  MAX = findMax2D(tData);
 
   for (let i = 0; i < tData.length; i++) {
     if (Array.isArray(tData[i])) {
@@ -37,11 +39,15 @@ function drawBar(value, options) {
   }
 
   let bar = document.createElement("div");
-  bar.attr('height', String.toString());
+  bar.attr('height', String.toString(relativeHeight(value, options)));
 }
 
 function drawStackedBar(values, options) {
 
+}
+
+function relativeHeight(value, options) {
+  return (value / MAX) * options.height;
 }
 
 /*
