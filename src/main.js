@@ -37,6 +37,7 @@ function createContainer(options) {
   container.width(options.width);
   container.height(options.height);
   container.css('display', 'flex');
+  container.css('align-items', 'flex-end');
   container.css('background-color', options.background);
 
   return container;
@@ -55,7 +56,7 @@ function drawBar(value, options) {
 
   let bar = $("<div></div>");
   bar.height(relativeHeight(value, options));
-  bar.width(5);
+  bar.css('flex-grow', 1);
   bar.css('margin', options.barSpacing);
   bar.css('background-color', options.barColour);
 
@@ -115,9 +116,9 @@ function findMax2D(values) {
     MAX = tValues[0][0];
   else MAX = tValues[0];
 
-  for (let i = 0; i < tValues.length; i++) {
+  for (let i = 1; i < tValues.length; i++) {
     if (Array.isArray(tValues[i]))
-      if (MAX < tValues[i][0])
+      if (MAX < tValues[i][0]) //Check only first value in sub-arrays.
         MAX = tValues[i][0];
     else if (MAX < tValues[i])
       MAX = tValues[i];
@@ -139,7 +140,7 @@ const testOptions = {
   title: 'Test Chart',
   titleColour: 'white',
   barColour: 'red',
-  stackColours: [],
+  stackColours: ['red', 'green'],
   barTextAlign: 'top',
   barSpacing: 5,
   barAxes: 'x',
