@@ -6,7 +6,7 @@
 * @param {Object}   options   Object containing options for the bar chart, colours, width/height, etc.
 *                             Background Colour, Bar Colour, Width/Height, Bar Spacing, Bar Chart Axes,
 *                             Label Alignment, X/Y-Axis Labels/Ticks, Title, Font Size/Colour.
-* @param {Elemet}   element   HTML object where the bar chart should be drawn
+* @param {Element}   element   HTML object where the bar chart should be drawn
 */
 function drawBarChart(data, options, element) {
 
