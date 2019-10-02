@@ -14,7 +14,7 @@ function drawBarChart(data, options, element) {
 
 /*
 * Draw a single bar
-* @param {Number}   value     Value of bar.
+* @param {Number}   value     Value(s) of bar.
 * @param {Object}   options   Options object passed to be referenced from the main drawBarChart function.
 */
 function drawBar(value, options) {
@@ -26,10 +26,8 @@ function drawBar(value, options) {
 * Sort values DESCENDING
 * @param {Number[]} values  Array of Numbers to sort.
 */
-
 function mergeSort(values) {
   let sort = [...values];
-  console.log(sort);
 
   if (sort.length <= 1) {
     return sort;
@@ -42,17 +40,20 @@ function mergeSort(values) {
   left = [...mergeSort(left)];
   right = [...mergeSort(right)];
 
+  return merge(left, right);
+}
 
-  let result = [];
-  while (left.length > 0 || right.length > 0) {
-    //We're here.
-    if (left[0] >= right[0] || right.length === 0) {
-      result.push(left.shift());
+function merge(left, right) {
+  let l = [...left];
+  let r = [...right];
+  let output = [];
+
+  while (l.length > 0 || r.length > 0) {
+    if (l[0] >= r[0] || r.length === 0) {
+      output.push(l.shift());
     } else {
-      console.log(right);
-      result.push(right.shift());
+      output.push(r.shift());
     }
   }
-
-  return result;
+  return output;
 }
