@@ -55,10 +55,28 @@ function drawBar(value, options) {
   }
 
   let bar = $("<div></div>");
-  bar.height(relativeHeight(value, options));
+  bar.height(relativeHeight(value, options) - 10); //Subtract top/bot padding to space value better.
+  bar.css('padding-top', 5);
+  bar.css('padding-bottom', 5);
   bar.css('flex-grow', 1);
   bar.css('margin', options.barSpacing);
   bar.css('background-color', options.barColour);
+
+  bar.css('display', 'flex');
+
+  if (typeof options.barTextAlign !== 'string') {
+    options.barTextAlign = 'top';
+  }
+  if (options.barTextAlign.toLowerCase() === 'bottom')
+    bar.css('align-items', 'flex-end');
+  else if (options.barTextAlign.toLowerCase() === 'center')
+    bar.css('align-items', 'center');
+  else
+    bar.css('align-items', 'flex-start');
+
+  bar.css('justify-content', 'center');
+
+  bar.text(value);
 
   return bar;
 }
@@ -141,7 +159,7 @@ const testOptions = {
   titleColour: 'white',
   barColour: 'red',
   stackColours: ['red', 'green'],
-  barTextAlign: 'top',
+  barTextAlign: null,
   barSpacing: 5,
   barAxes: 'x',
   labels: [1, 2, 3, 4, 5, 6, 7],
