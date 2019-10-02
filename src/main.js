@@ -16,11 +16,10 @@ function drawBarChart(data, options, element) {
   }
 
   let container = createContainer(options);
-  $('#bar-form').append(container);
-  //$('#bar-forms').append(container);
-  return;
+  element.append(container);
 
   tData = sortInnerArrays([...data]);
+
   MAX = findMax2D(tData);
 
   for (let i = 0; i < tData.length; i++) {
@@ -91,10 +90,12 @@ function sortInnerArrays(data) {
   let tData = [...data];
 
   for (let i = 0; i < tData.length; i++) {
-    if (Array.isArray(tData)) {
+    if (Array.isArray(tData[i])) {
       tData[i] = tData[i].sort((a, b) => b - a);  // Sort descending.
     }
   }
+
+  return tData;
 }
 
 /*
@@ -103,7 +104,7 @@ function sortInnerArrays(data) {
 * @return Highest value in the 2D array.
 */
 function findMax2D(values) {
-  if (!Array,isArray(values)) {
+  if (!Array.isArray(values)) {
     throw new Error ('findMax2D @param data | Invalid data type');
   }
 
@@ -144,4 +145,7 @@ const testOptions = {
   tickRange: 1
 };
 
-drawBarChart(testData, testOptions, $('#bar-form'));
+$(document).ready(function() {
+  drawBarChart(testData, testOptions, $('#bar-form'));
+});
+
