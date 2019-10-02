@@ -9,7 +9,16 @@
 * @param {Element}   element   HTML object where the bar chart should be drawn
 */
 function drawBarChart(data, options, element) {
+  let container = document.createElement("div");
 
+  if (!Array.isArray(data)) {
+    throw new Error('@param data | Please pass an Array of Numbers.');
+  }
+  barData = [...data];
+
+  for (let i = 0; i < data.length; i++) {
+
+  }
 }
 
 /*
@@ -19,6 +28,11 @@ function drawBarChart(data, options, element) {
 */
 function drawBar(value, options) {
   let bar = document.createElement("div");
+
+}
+
+function drawStackedBar(values, options) {
+
 }
 
 
