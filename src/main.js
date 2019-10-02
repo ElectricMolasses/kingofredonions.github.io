@@ -1,11 +1,11 @@
 /*
 * Generate bar chart
-* @param {Number[]} data      Array of numbers, may be 2D for 'stacked' bars.
-*                             Stacked bars MUST be sorted, but the application will handle that
-*                             itself.
-* @param {Object}   options   Object containing options for the bar chart, colours, width/height, etc.
-*                             Background Colour, Bar Colour, Width/Height, Bar Spacing, Bar Chart Axes,
-*                             Label Alignment, X/Y-Axis Labels/Ticks, Title, Font Size/Colour.
+* @param {Number[]}  data      Array of numbers, may be 2D for 'stacked' bars.
+*                              Stacked bars MUST be sorted, but the application will handle that
+*                              itself.
+* @param {Object}    options   Object containing options for the bar chart, colours, width/height, etc.
+*                              Background Colour, Bar Colour, Width/Height, Bar Spacing, Bar Chart Axes,
+*                              Label Alignment, X/Y-Axis Labels/Ticks, Title, Font Size/Colour.
 * @param {Element}   element   HTML object where the bar chart should be drawn
 */
 function drawBarChart(data, options, element) {

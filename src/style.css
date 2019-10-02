@@ -1,0 +1,14 @@
+html {
+  background: #24292e;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+#bar-form {
+  border-style: solid;
+  width: 800px;
+  min-height: 200px;
+}
