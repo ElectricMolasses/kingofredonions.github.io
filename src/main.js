@@ -11,11 +11,15 @@ let MAX = 10; //Used mutable because java is unable to initialize a constant out
 * @param {Element}   element   HTML object where the bar chart should be drawn
 */
 function drawBarChart(data, options, element) {
-  let container = document.createElement("div");
-
   if (!Array.isArray(data)) {
     throw new Error('drawBarChart @param data | Invalid data type');
   }
+
+  let container = createContainer(options);
+  $('#bar-form').append(container);
+  //$('#bar-forms').append(container);
+  return;
+
   tData = sortInnerArrays([...data]);
   MAX = findMax2D(tData);
 
@@ -26,6 +30,17 @@ function drawBarChart(data, options, element) {
       container.append(drawBar(tData[i], options));
     }
   }
+}
+
+function createContainer(options) {
+  let container = $("<div></div>");
+
+  container.width(options.width);
+  container.height(options.height);
+  container.css('display', 'flex');
+  container.css('background-color', options.background);
+
+  return container;
 }
 
 /*
@@ -43,12 +58,14 @@ function drawBar(value, options) {
   bar.css('background-color', 'red');
 }
 
-function jQueryTest(value) {
+function jQueryTest(value, element) {
+
   let bar = $("<div></div>");
   bar.height(relativeHeight(value, {height: 200}));
   bar.width('10');
   bar.css('background-color', 'red');
-  $('#bar-form').append(bar);
+  element.append(bar);
+
 }
 
 function drawStackedBar(values, options) {
@@ -126,3 +143,5 @@ const testOptions = {
   labels: [1, 2, 3, 4, 5, 6, 7],
   tickRange: 1
 };
+
+drawBarChart(testData, testOptions, $('#bar-form'));
