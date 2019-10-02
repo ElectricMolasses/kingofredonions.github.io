@@ -4,7 +4,6 @@ https://gomakethings.com/whats-the-best-way-to-document-javascript/
 Flexbox guide to assist with spacing/layout
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
-
 Quick search to figure out how to include JQuery
 https://code.jquery.com/
 

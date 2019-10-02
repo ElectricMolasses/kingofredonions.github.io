@@ -50,9 +50,7 @@ function createContainer(options) {
 * @return Returns a bar HTML element.
 */
 function drawBar(value, options) {
-  if (isNaN(value)) {
-    throw new Error ('drawBar @param value | Invalid data type');
-  }
+  if (isNaN(value)) throw new Error ('drawBar @param value | Invalid data type');
 
   let bar = $("<div></div>");
   bar.height(relativeHeight(value, options) - 10); //Subtract top/bot padding to space value better.
@@ -75,7 +73,6 @@ function drawBar(value, options) {
     bar.css('align-items', 'flex-start');
 
   bar.css('justify-content', 'center');
-
   bar.text(value);
 
   return bar;
@@ -88,6 +85,11 @@ function drawBar(value, options) {
 * @return   Returns a stacked bar HTML element.
 */
 function drawStackedBar(values, options) {
+  if (!Array.isArray(values)) throw new Error('drawStackedBar @param values | Invalid data type');
+
+  let tValues = [...values];
+  let colours = options.stackColours;
+
 
 }
 
@@ -103,9 +105,7 @@ function relativeHeight(value, options) {
 * @return {Number[]} Full array with all inner arrays sorted descending.
 */
 function sortInnerArrays(data) {
-  if (!Array.isArray(data)) {
-    throw new Error ('sortInnerArrays @param data | Invalid data type');
-  }
+  if (!Array.isArray(data)) throw new Error ('sortInnerArrays @param data | Invalid data type');
 
   let tData = [...data];
 
@@ -124,9 +124,7 @@ function sortInnerArrays(data) {
 * @return Highest value in the 2D array.
 */
 function findMax2D(values) {
-  if (!Array.isArray(values)) {
-    throw new Error ('findMax2D @param data | Invalid data type');
-  }
+  if (!Array.isArray(values)) throw new Error ('findMax2D @param data | Invalid data type');
 
   let tValues = [...values];
   let MAX;
