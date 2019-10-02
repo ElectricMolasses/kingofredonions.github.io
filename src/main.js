@@ -46,6 +46,7 @@ function createContainer(options) {
 * Draw a single bar
 * @param {Number}   value     Value(s) of bar.
 * @param {Object}   options   Options object passed to be referenced from the main drawBarChart function.
+* @return Returns a bar HTML element.
 */
 function drawBar(value, options) {
   if (isNaN(value)) {
@@ -54,19 +55,19 @@ function drawBar(value, options) {
 
   let bar = $("<div></div>");
   bar.height(relativeHeight(value, options));
-  bar.css('background-color', 'red');
+  bar.width(5);
+  bar.css('margin', options.barSpacing);
+  bar.css('background-color', options.barColour);
+
+  return bar;
 }
 
-function jQueryTest(value, element) {
-
-  let bar = $("<div></div>");
-  bar.height(relativeHeight(value, {height: 200}));
-  bar.width('10');
-  bar.css('background-color', 'red');
-  element.append(bar);
-
-}
-
+/*
+* Draw overlapping bars
+* @param  {Number[]}  values  Values of bars to overlap.
+* @param  {Object}    options Options object passed to drawBarChart function.
+* @return   Returns a stacked bar HTML element.
+*/
 function drawStackedBar(values, options) {
 
 }

@@ -10,3 +10,6 @@ https://code.jquery.com/
 
 JQuery to append to pages
 https://www.w3schools.com/jquery/jquery_dom_add.asp
+
+CSS Box Model Reference
+https://www.w3schools.com/css/css_boxmodel.asp
