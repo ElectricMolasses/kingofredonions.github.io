@@ -12,12 +12,16 @@ function drawBarChart(data, options, element) {
   let container = document.createElement("div");
 
   if (!Array.isArray(data)) {
-    throw new Error('@param data | Please pass an Array of Numbers.');
+    throw new Error('drawBarChart @param data | Invalid data type');
   }
-  barData = [...data];
+  tData = sortInnerArrays([...data]);
 
-  for (let i = 0; i < data.length; i++) {
-
+  for (let i = 0; i < tData.length; i++) {
+    if (Array.isArray(tData[i])) {
+      container.append(drawStackedBar(tData[i], options));
+    } else {
+      container.append(drawBar(tData[i], options));
+    }
   }
 }
 
@@ -27,56 +31,33 @@ function drawBarChart(data, options, element) {
 * @param {Object}   options   Options object passed to be referenced from the main drawBarChart function.
 */
 function drawBar(value, options) {
-  let bar = document.createElement("div");
+  if (isNaN(value)) {
+    throw new Error ('drawBar @param value | Invalid data type');
+  }
 
+  let bar = document.createElement("div");
+  bar.attr('height', String.toString());
 }
 
 function drawStackedBar(values, options) {
 
 }
 
-
 /*
-* Sort values DESCENDING
-* @param  {Number[]} values  Array of Numbers to sort.
-* @return {Number[]}  Fully sorted array.
+* Sort all inner arrays by descending values.
+* This is only used for the max function to determine height of bars relative
+* to the height propety.
+* @param  {Number[]} data  Full barchart array.
+* @return {Number[]} Full array with all inner arrays sorted descending.
 */
-function mergeSort(values) {
-  let sort = [...values];
+function sortInnerArrays(data) {
+  let tData = [...data];
 
-  if (sort.length <= 1) {
-    return sort;
-  }
-
-  let middle = sort.length / 2;
-  let left = sort.slice(0, middle);
-  let right = sort.slice(middle, sort.length);
-
-  left = [...mergeSort(left)];
-  right = [...mergeSort(right)];
-
-  return merge(left, right);
-}
-
-/*
-* Merge section of mergeSort algorithm.  Code separated for tidiness.
-* @param  {Number[]} left  First array to merge in descending order.
-* @param  {Number[]} right Second array to merge in descending order.
-* @return {Number[]}  Two arrays merged in descending order.
-*/
-function merge(left, right) {
-  let l = [...left];
-  let r = [...right];
-  let output = [];
-
-  while (l.length > 0 || r.length > 0) {
-    if (l[0] >= r[0] || r.length === 0) {
-      output.push(l.shift());
-    } else {
-      output.push(r.shift());
+  for (let i = 0; i < tData.length; i++) {
+    if (Array.isArray(tData)) {
+      tData[i] = tData[i].sort((a, b) => b - a);  // Sort descending.
     }
   }
-  return output;
 }
 
 const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8]];
