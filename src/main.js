@@ -21,6 +21,12 @@ function drawBar(value, options) {
 
 }
 
+
+/*
+* Sort values DESCENDING
+* @param {Number[]} values  Array of Numbers to sort.
+*/
+
 function mergeSort(values) {
   let sort = [...values];
   console.log(sort);
@@ -42,9 +48,7 @@ function mergeSort(values) {
     //We're here.
     if (left[0] >= right[0] || right.length === 0) {
       result.push(left.shift());
-      console.log("Left");
     } else {
-      console.log("Right");
       console.log(right);
       result.push(right.shift());
     }
@@ -52,9 +56,3 @@ function mergeSort(values) {
 
   return result;
 }
-
-function merge(values) {
-
-}
-
-console.log(mergeSort([3, 4, 43, 3, 2, 76, 34, 54, 26, 75, 11]));
