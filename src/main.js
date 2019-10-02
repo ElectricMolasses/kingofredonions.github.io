@@ -15,6 +15,7 @@ function drawBarChart(data, options, element) {
     throw new Error('drawBarChart @param data | Invalid data type');
   }
   tData = sortInnerArrays([...data]);
+  const MAX = findMax2D(tData);
 
   for (let i = 0; i < tData.length; i++) {
     if (Array.isArray(tData[i])) {
@@ -58,6 +59,24 @@ function sortInnerArrays(data) {
       tData[i] = tData[i].sort((a, b) => b - a);  // Sort descending.
     }
   }
+}
+
+function findMax2D(values) {
+  let tValues = [...values];
+  let MAX;
+  if (Array.isArray(tValues[0]))
+    MAX = tValues[0][0];
+  else MAX = tValues[0];
+
+  for (let i = 0; i < tValues.length; i++) {
+    if (Array.isArray(tValues[i]))
+      if (MAX < tValues[i][0])
+        MAX = tValues[i][0];
+    else if (MAX < tValues[i])
+      MAX = tValues[i];
+  }
+
+  return MAX;
 }
 
 const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8]];
