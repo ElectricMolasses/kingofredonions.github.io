@@ -61,6 +61,11 @@ function sortInnerArrays(data) {
   }
 }
 
+/*
+* Find the max value in the post-sorted array.
+* @param  {Number[]}  2D Array to find max value in, with sub-arrays pre-sorted.
+* @return Highest value in the 2D array.
+*/
 function findMax2D(values) {
   let tValues = [...values];
   let MAX;
