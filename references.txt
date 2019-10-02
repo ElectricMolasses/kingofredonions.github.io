@@ -1,0 +1,10 @@
+Guidance for Doc comments.
+https://gomakethings.com/whats-the-best-way-to-document-javascript/
+
+Flexbox guide to assist with spacing/layout
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+
+
+JQuery to append to pages
+https://www.w3schools.com/jquery/jquery_dom_add.asp

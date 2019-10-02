@@ -18,13 +18,14 @@ function drawBarChart(data, options, element) {
 * @param {Object}   options   Options object passed to be referenced from the main drawBarChart function.
 */
 function drawBar(value, options) {
-
+  let bar = document.createElement("div");
 }
 
 
 /*
 * Sort values DESCENDING
-* @param {Number[]} values  Array of Numbers to sort.
+* @param  {Number[]} values  Array of Numbers to sort.
+* @return {Number[]}  Fully sorted array.
 */
 function mergeSort(values) {
   let sort = [...values];
@@ -43,6 +44,12 @@ function mergeSort(values) {
   return merge(left, right);
 }
 
+/*
+* Merge section of mergeSort algorithm.  Code separated for tidiness.
+* @param  {Number[]} left  First array to merge in descending order.
+* @param  {Number[]} right Second array to merge in descending order.
+* @return {Number[]}  Two arrays merged in descending order.
+*/
 function merge(left, right) {
   let l = [...left];
   let r = [...right];
@@ -57,3 +64,23 @@ function merge(left, right) {
   }
   return output;
 }
+
+const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8]];
+// x-Axis labels can be provided either matching the testData length for individual labels,
+// two labels (beginning/end, or automatically populated range, based on the labelType option),
+// or a single label centered at the bottom.  Will auto detect.
+//
+// Tick range is just for y-axis ticks, based on bar values.
+const testOptions = {
+  width: 800,
+  height: 600,
+  background: 'black',
+  title: 'Test Chart',
+  titleColour: 'white',
+  barColour: 'red',
+  barTextAlign: 'top',
+  barSpacing: 5,
+  barAxes: 'x',
+  labels: [1, 2, 3, 4, 5, 6, 7],
+  tickRange: 1
+};
