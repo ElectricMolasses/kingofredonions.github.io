@@ -45,9 +45,9 @@ function createContainer(options) {
 
 /*
 * Draw a single bar
-* @param {Number}   value     Value(s) of bar.
-* @param {Object}   options   Options object passed to be referenced from the main drawBarChart function.
-* @return Returns a bar HTML element.
+* @param  {Number}   value     Value(s) of bar.
+* @param  {Object}   options   Options object passed to be referenced from the main drawBarChart function.
+* @return {Object}  Returns a bar HTML element.
 */
 function drawBar(value, options) {
   if (isNaN(value)) throw new Error ('drawBar @param value | Invalid data type');
@@ -82,7 +82,7 @@ function drawBar(value, options) {
 * Draw overlapping bars
 * @param  {Number[]}  values  Values of bars to overlap.
 * @param  {Object}    options Options object passed to drawBarChart function.
-* @return   Returns a stacked bar HTML element.
+* @return {Object}  Returns a stacked bar HTML element.
 */
 function drawStackedBar(values, options) {
   if (!Array.isArray(values)) throw new Error('drawStackedBar @param values | Invalid data type');
@@ -121,7 +121,7 @@ function sortInnerArrays(data) {
 /*
 * Find the max value in the post-sorted array.
 * @param  {Number[]}  2D Array to find max value in, with sub-arrays pre-sorted.
-* @return Highest value in the 2D array.
+* @return {Number}    Highest value in the 2D array.
 */
 function findMax2D(values) {
   if (!Array.isArray(values)) throw new Error ('findMax2D @param data | Invalid data type');
@@ -167,4 +167,3 @@ const testOptions = {
 $(document).ready(function() {
   drawBarChart(testData, testOptions, $('#bar-form'));
 });
-
