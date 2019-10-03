@@ -32,7 +32,7 @@ function drawBarChart(data, options, element) {
 }
 
 function createContainer(options) {
-  let container = $("<div></div>");
+  let container = $('<div></div>');
 
   container.width(options.width);
   container.height(options.height);
@@ -52,7 +52,7 @@ function createContainer(options) {
 function drawBar(value, options) {
   if (isNaN(value)) throw new Error ('drawBar @param value | Invalid data type');
 
-  let bar = $("<div></div>");
+  let bar = $('<div></div>');
   bar.height(relativeHeight(value, options) - 10); //Subtract top/bot padding to space value better.
   bar.css('padding-top', 5);
   bar.css('padding-bottom', 5);
@@ -89,8 +89,34 @@ function drawStackedBar(values, options) {
 
   let tValues = [...values];
   let colours = options.stackColours;
+  let colourPointer = 0;
+  let stackedBars = [];
 
+  console.log("tValue: " + tValues.length);
+  console.log("StackColours: " + options.stackColours.length);
+  if (tValues.length <= options.stackColours.length)
+    colourPointer = tValues.length - 1;
+  else colourPointer = options.stackColours.length - (tValues.length % options.stackColours.length);
 
+  for (let i = 0; i < tValues.length; i++) {
+    let curValue;
+    if (tValues[i+1] !== undefined)
+      curHeight = tValues[i] - tValues[i+1];
+    else curHeight = tValues[i];
+
+    let curBar = drawBar(tValues[i], options);
+
+    curBar.css('background-color', options.stackColours[colourPointer]);
+    console.log(colourPointer);
+
+    if (colourPointer === 0)
+      colourPointer = options.stackColours.length - 1;
+    else colourPointer--;
+
+    stackedBars.push(curBar);
+  }
+
+  return stackedBars;
 }
 
 function relativeHeight(value, options) {
