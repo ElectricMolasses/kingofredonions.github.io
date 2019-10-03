@@ -107,7 +107,8 @@ function drawStackedBar(values, options) {
 
     let curBar = drawBar(tValues[i], options).css('margin', 0)
                                              .css('padding', 0)
-                                             .css('height', curHeight);
+                                             .css('height', curHeight)
+                                             .css('width', '100%');
 
     curBar.css('background-color', options.stackColours[colourPointer]);
 
