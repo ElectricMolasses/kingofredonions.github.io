@@ -34,11 +34,11 @@ function drawBarChart(data, options, element) {
 function createContainer(options) {
   let container = $('<div></div>');
 
-  container.width(options.width);
-  container.height(options.height);
-  container.css('display', 'flex');
-  container.css('align-items', 'flex-end');
-  container.css('background-color', options.background);
+  container.width(options.width)
+           .height(options.height)
+           .css('display', 'flex')
+           .css('align-items', 'flex-end')
+           .css('background-color', options.background);
 
   return container;
 }
@@ -53,14 +53,15 @@ function drawBar(value, options) {
   if (isNaN(value)) throw new Error ('drawBar @param value | Invalid data type');
 
   let bar = $('<div></div>');
-  bar.height(relativeHeight(value, options) - 10); //Subtract top/bot padding to space value better.
-  bar.css('padding-top', 5);
-  bar.css('padding-bottom', 5);
-  bar.css('flex-grow', 1);
-  bar.css('margin', options.barSpacing);
-  bar.css('background-color', options.barColour);
-
-  bar.css('display', 'flex');
+  bar.height(relativeHeight(value, options) - 10) //Subtract top/bot padding to space text better.
+     .css('padding-top', 5)
+     .css('padding-bottom', 5)
+     .css('flex-grow', 1)
+     .css('margin', options.barSpacing)
+     .css('background-color', options.barColour)
+     .css('display', 'flex')
+     .css('justify-content', 'center')
+     .text(value);
 
   if (typeof options.barTextAlign !== 'string') {
     options.barTextAlign = 'top';
@@ -71,9 +72,6 @@ function drawBar(value, options) {
     bar.css('align-items', 'center');
   else
     bar.css('align-items', 'flex-start');
-
-  bar.css('justify-content', 'center');
-  bar.text(value);
 
   return bar;
 }
@@ -91,8 +89,6 @@ function drawStackedBar(values, options) {
   let colourPointer = 0;
   let stackContainer = createStackContainer();
 
-  console.log("tValue: " + tValues.length);
-  console.log("StackColours: " + options.stackColours.length);
   if (tValues.length <= options.stackColours.length)
     colourPointer = tValues.length - 1;
   else colourPointer = options.stackColours.length - (tValues.length % options.stackColours.length);
@@ -108,9 +104,8 @@ function drawStackedBar(values, options) {
     let curBar = drawBar(tValues[i], options).css('margin', 0)
                                              .css('padding', 0)
                                              .css('height', curHeight)
-                                             .css('width', '100%');
-
-    curBar.css('background-color', options.stackColours[colourPointer]);
+                                             .css('width', '100%')
+                                             .css('background-color', options.stackColours[colourPointer]);
 
     if (colourPointer === 0)
       colourPointer = options.stackColours.length - 1;
