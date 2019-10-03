@@ -88,9 +88,8 @@ function drawStackedBar(values, options) {
   if (!Array.isArray(values)) throw new Error('drawStackedBar @param values | Invalid data type');
 
   let tValues = [...values];
-  let colours = options.stackColours;
   let colourPointer = 0;
-  let stackedBars = [];
+  let stackContainer = createStackContainer();
 
   console.log("tValue: " + tValues.length);
   console.log("StackColours: " + options.stackColours.length);
@@ -99,24 +98,35 @@ function drawStackedBar(values, options) {
   else colourPointer = options.stackColours.length - (tValues.length % options.stackColours.length);
 
   for (let i = 0; i < tValues.length; i++) {
-    let curValue;
+    let curHeight;
     if (tValues[i+1] !== undefined)
       curHeight = tValues[i] - tValues[i+1];
     else curHeight = tValues[i];
 
-    let curBar = drawBar(tValues[i], options);
+    curHeight = relativeHeight(curHeight, options);
+
+    let curBar = drawBar(tValues[i], options).css('margin', 0)
+                                             .css('padding', 0)
+                                             .css('height', curHeight);
 
     curBar.css('background-color', options.stackColours[colourPointer]);
-    console.log(colourPointer);
 
     if (colourPointer === 0)
       colourPointer = options.stackColours.length - 1;
     else colourPointer--;
 
-    stackedBars.push(curBar);
+    stackContainer.append(curBar);
   }
 
-  return stackedBars;
+  return stackContainer;
+}
+
+function createStackContainer() {
+  return $('<div></div>').css('display', 'flex')
+                         .css('flex-direction', 'column')
+                         .css('flex-grow', 1)
+                         .css('align-items', 'flex-end')
+                         .css('margin', 5);
 }
 
 function relativeHeight(value, options) {
@@ -182,7 +192,7 @@ const testOptions = {
   title: 'Test Chart',
   titleColour: 'white',
   barColour: 'red',
-  stackColours: ['red', 'green'],
+  stackColours: ['red', 'green', 'yellow', 'pink'], //Colours go top to bottom in stacks.
   barTextAlign: null,
   barSpacing: 5,
   barAxes: 'x',
