@@ -31,6 +31,11 @@ function drawBarChart(data, options, element) {
   }
 }
 
+/*
+* Creates the container element for stacked bars.
+* @param {Object}   options   Options object passed to main drawBarChart function.
+* @return {Element}   Returns HTML element to contain stacked bars.
+*/
 function createContainer(options) {
   let container = $('<div></div>');
 
