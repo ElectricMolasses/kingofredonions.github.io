@@ -12,3 +12,18 @@ https://www.w3schools.com/jquery/jquery_dom_add.asp
 
 CSS Box Model Reference
 https://www.w3schools.com/css/css_boxmodel.asp
+
+Quick Google search to add elements with JQuery, snippet source:
+https://www.tutorialrepublic.com/faq/how-to-add-element-to-dom-in-jquery.php
+
+Check if width has a native function or only .css with
+https://api.jquery.com/width/
+
+Search to round element corners
+https://www.w3schools.com/css/css3_borders.asp
+
+CSS animations lookup
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
+
+Box shadow lookup
+https://www.w3schools.com/cssref/css3_pr_box-shadow.asp

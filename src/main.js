@@ -67,7 +67,8 @@ function drawBar(value, options) {
      .css('background-color', options.barColour)
      .css('display', 'flex')
      .css('justify-content', 'center')
-     .text(value);
+     .text(value)
+     .addClass('bar');
 
   if (typeof options.barTextAlign !== 'string') {
     options.barTextAlign = 'top';
@@ -111,6 +112,9 @@ function drawStackedBar(values, options) {
                                              .height(curHeight)
                                              .css('width', '100%')
                                              .css('background-color', options.stackColours[colourPointer]);
+    if (i !== 0) curBar.addClass('lowerStackBar')
+      else curBar.addClass('topStackBar');
+    curBar.removeClass('bar');
 
     if (colourPointer === 0)
       colourPointer = options.stackColours.length - 1;
@@ -134,7 +138,8 @@ function createStackContainer(options) {
                          .css('align-items', 'flex-end')
                          .css('margin', 0)
                          .css('margin-left', options.barSpacing)
-                         .css('margin-right', options.barSpacing);
+                         .css('margin-right', options.barSpacing)
+                         .addClass('stack');
 }
 
 function relativeHeight(value, options) {
@@ -195,7 +200,7 @@ const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8], [7, 4, 2, 14, 3], 7];
 // Tick range is just for y-axis ticks, based on bar values.
 const testOptions = {
   width: 800,
-  height: 600,
+  height: 500,
   background: 'grey',
   title: 'Test Chart',
   titleColour: 'white',
@@ -204,7 +209,7 @@ const testOptions = {
   barTextAlign: null,
   barSpacing: 15,
   barAxes: 'x',
-  labels: [1, 2, 3, 4, 5, 6, 7],
+  labels: [1, 2, 3, 4, 5, 6, 7, 8],
   tickRange: 1
 };
 
