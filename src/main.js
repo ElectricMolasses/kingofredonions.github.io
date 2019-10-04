@@ -62,7 +62,8 @@ function drawBar(value, options) {
      .css('padding-top', 5)
      .css('padding-bottom', 5)
      .css('flex-grow', 1)
-     .css('margin', options.barSpacing)
+     .css('margin-left', options.barSpacing)
+     .css('margin-right', options.barSpacing)
      .css('background-color', options.barColour)
      .css('display', 'flex')
      .css('justify-content', 'center')
@@ -92,7 +93,7 @@ function drawStackedBar(values, options) {
 
   let tValues = [...values];
   let colourPointer = 0;
-  let stackContainer = createStackContainer();
+  let stackContainer = createStackContainer(options);
 
   if (tValues.length <= options.stackColours.length)
     colourPointer = tValues.length - 1;
@@ -103,12 +104,11 @@ function drawStackedBar(values, options) {
     if (tValues[i+1] !== undefined)
       curHeight = tValues[i] - tValues[i+1];
     else curHeight = tValues[i];
-
-    curHeight = relativeHeight(curHeight, options);
+    // Cut the stacked bars into visible pieces for the purpose of value alignment within each sub-bar.
+    curHeight = relativeHeight(curHeight, options) - 10;
 
     let curBar = drawBar(tValues[i], options).css('margin', 0)
-                                             .css('padding', 0)
-                                             .css('height', curHeight)
+                                             .height(curHeight)
                                              .css('width', '100%')
                                              .css('background-color', options.stackColours[colourPointer]);
 
@@ -127,12 +127,14 @@ function drawStackedBar(values, options) {
 * @param {Object}   options   Options object passed to main drawBarChart function.
 * @return {Element}   Returns HTML element to contain stacked bars.
 */
-function createStackContainer() {
+function createStackContainer(options) {
   return $('<div></div>').css('display', 'flex')
                          .css('flex-direction', 'column')
                          .css('flex-grow', 1)
                          .css('align-items', 'flex-end')
-                         .css('margin', 5);
+                         .css('margin', 0)
+                         .css('margin-left', options.barSpacing)
+                         .css('margin-right', options.barSpacing);
 }
 
 function relativeHeight(value, options) {
@@ -185,7 +187,7 @@ function findMax2D(values) {
   return MAX;
 }
 
-const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8]];
+const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8], [7, 4, 2, 14, 3], 7];
 // x-Axis labels can be provided either matching the testData length for individual labels,
 // two labels (beginning/end, or automatically populated range, based on the labelType option),
 // or a single label centered at the bottom.  Will auto detect.
@@ -194,13 +196,13 @@ const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8]];
 const testOptions = {
   width: 800,
   height: 600,
-  background: 'black',
+  background: 'grey',
   title: 'Test Chart',
   titleColour: 'white',
   barColour: 'red',
   stackColours: ['red', 'green', 'yellow', 'pink'], //Colours go top to bottom in stacks.
   barTextAlign: null,
-  barSpacing: 5,
+  barSpacing: 15,
   barAxes: 'x',
   labels: [1, 2, 3, 4, 5, 6, 7],
   tickRange: 1
