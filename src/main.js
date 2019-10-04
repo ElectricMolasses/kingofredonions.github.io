@@ -43,7 +43,8 @@ function createContainer(options) {
            .height(options.height)
            .css('display', 'flex')
            .css('align-items', 'flex-end')
-           .css('background-color', options.background);
+           .css('background-color', options.background)
+           .addClass('barChartBox');
 
   return container;
 }
@@ -98,7 +99,7 @@ function drawStackedBar(values, options) {
 
   if (tValues.length <= options.stackColours.length)
     colourPointer = tValues.length - 1;
-  else colourPointer = options.stackColours.length - (tValues.length % options.stackColours.length);
+  else colourPointer = options.stackColours.length - (tValues.length % options.stackColours.length) + 1;
 
   for (let i = 0; i < tValues.length; i++) {
     let curHeight;

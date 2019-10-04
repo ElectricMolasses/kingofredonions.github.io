@@ -14,12 +14,17 @@ body {
   display: flex;
 }
 
+.barChartBox {
+  animation-duration: 1.5s;
+  animation-name: fade-in;
+}
+
 .bar {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
-  box-shadow: 2px -2px 8px 2px #111111;
+  box-shadow: 1px -1px 12px 2px #111111;
 
-  animation-duration: 3s;
+  animation-duration: 2.5s;
   animation-name: fade-in;
 }
 
@@ -28,16 +33,16 @@ body {
   border-top-left-radius: 5px;
 }
 
-/*.lowerStackBar {
-
-}*/
+.lowerStackBar {
+  box-shadow: 0px 2px 2px;
+}
 
 .stack {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
-  box-shadow: 2px -2px 8px 2px #111111;
+  box-shadow: 1px -1px 8px 2px #111111;
 
-  animation-duration: 3s;
+  animation-duration: 2.5s;
   animation-name: fade-in;
 }
 
