@@ -124,7 +124,7 @@ function drawStackedBar(values, options) {
 
   if (tValues.length <= options.stackColours.length)
     colourPointer = tValues.length - 1;
-  else colourPointer = options.stackColours.length - (tValues.length % options.stackColours.length) + 1;
+  else colourPointer = (tValues.length % options.stackColours.length) - 1;
 
   for (let i = 0; i < tValues.length; i++) {
     let curHeight;
@@ -218,7 +218,7 @@ function findMax2D(values) {
   return MAX;
 }
 
-const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8], [7, 4, 2, 14, 3, 12], 7];
+const testData = [2, 4, 5, 7, 3, [2, 6, 8], [7, 4, 2, 14, 3, 12], 7];
 // x-Axis labels can be provided either matching the testData length for individual labels,
 // two labels (beginning/end, or automatically populated range, based on the labelType option),
 // or a single label centered at the bottom.  Will auto detect.
@@ -231,7 +231,7 @@ const testOptions = {
   title: 'Test Chart',
   titleColour: 'white',
   barColour: 'red',
-  stackColours: ['red', 'green', 'yellow', 'pink'], //Colours go top to bottom in stacks.
+  stackColours: ['red', 'green', 'yellow', 'pink'],
   barTextAlign: null,
   barSpacing: 15,
   barAxes: 'x',
