@@ -15,7 +15,7 @@ function drawBarChart(data, options, element) {
     throw new Error('drawBarChart @param data | Invalid data type');
   }
 
-  let container = createContainer(options);
+  let container = createBarContainer(options);
   element.append(container);
 
   tData = sortInnerArrays([...data]);
@@ -33,6 +33,11 @@ function drawBarChart(data, options, element) {
   }
 }
 
+/*
+* Creates a stacked div set to show ticks.
+* @param  {Object} options   Options object passed to main function.
+* @return {Element} Returns a div containing elements to create ticks.
+*/
 function addTicks(options) {
   let ticks = $('<div></div>');
   ticks.height('100%')
@@ -61,7 +66,7 @@ function addTicks(options) {
 * @param  {Object}  options   Object containing all bar chart options.
 * @return {Element}   Returns a HTML element to append bars to.
 */
-function createContainer(options) {
+function createBarContainer(options) {
   let container = $('<div></div>');
 
   container.width(options.width)
@@ -231,7 +236,7 @@ const testOptions = {
   title: 'Test Chart',
   titleColour: 'white',
   barColour: 'red',
-  stackColours: ['red', 'green', 'yellow', 'pink'],
+  stackColours: ['red', 'orange', 'yellow', 'darkred'],
   barTextAlign: null,
   barSpacing: 15,
   barAxes: 'x',
