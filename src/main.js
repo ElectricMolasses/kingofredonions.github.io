@@ -1,4 +1,4 @@
-let MAX = 10; //Used mutable because java is unable to initialize a constant outside of the same scope/block.
+let MAX; //Used mutable because java is unable to initialize a constant outside of the same scope/block.
 
 /*
 * Generate bar chart
@@ -22,6 +22,8 @@ function drawBarChart(data, options, element) {
 
   MAX = findMax2D(tData);
 
+  container.append(addTicks(options));
+
   for (let i = 0; i < tData.length; i++) {
     if (Array.isArray(tData[i])) {
       container.append(drawStackedBar(tData[i], options));
@@ -29,6 +31,29 @@ function drawBarChart(data, options, element) {
       container.append(drawBar(tData[i], options));
     }
   }
+}
+
+function addTicks(options) {
+  let ticks = $('<div></div>');
+  ticks.height('100%')
+       .width(20)
+       .css('display', 'flex')
+       .css('flex-direction', 'column')
+       .css('margin', '0')
+       .addClass('tickContainer');
+  //Testing base tick at each interval, will add custom intervals later.
+  for (let i = 0; i < MAX; i++) {
+    let tick = $('<div></div>')
+         .width(5)
+         .css('border-top-style', 'solid')
+         .css('border-color', '#000000')
+         .css('border-width', '2px')
+         .css('margin', '0')
+         .height(relativeHeight(1, options));
+    ticks.append(tick);
+  }
+
+  return ticks;
 }
 
 /*
@@ -193,7 +218,7 @@ function findMax2D(values) {
   return MAX;
 }
 
-const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8], [7, 4, 2, 14, 3], 7];
+const testData = [2, 4, 5, 7, 3, [2, 6, 3, 8], [7, 4, 2, 14, 3, 12], 7];
 // x-Axis labels can be provided either matching the testData length for individual labels,
 // two labels (beginning/end, or automatically populated range, based on the labelType option),
 // or a single label centered at the bottom.  Will auto detect.
