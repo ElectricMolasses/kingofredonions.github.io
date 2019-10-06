@@ -40,26 +40,29 @@ function drawBarChart(data, options, element) {
 */
 function addTicks(options) {
   let ticks = $('<div></div>');
+
   ticks.height('100%')
-       .width(20)
+       .width(5)
        .css('display', 'flex')
        .css('flex-direction', 'column')
        .css('margin', '0')
        .addClass('tickContainer');
+
   //Testing base tick at each interval, will add custom intervals later.
   for (let i = 0; i < MAX; i++) {
     let tick = $('<div></div>')
          .width(5)
-         .css('border-top-style', 'solid')
          .css('border-color', '#000000')
          .css('border-width', '2px')
          .css('margin', '0')
-         .height(relativeHeight(1, options));
+         .height(Math.floor(relativeHeight(1, options) * options.tickInterval));
+    if ((MAX - i) % options.tickInterval === 0) tick.css('border-top-style', 'solid');
     ticks.append(tick);
   }
 
   return ticks;
 }
+
 
 /*
 * Creates container to house all bar elements.
@@ -241,7 +244,7 @@ const testOptions = {
   barSpacing: 15,
   barAxes: 'x',
   labels: [1, 2, 3, 4, 5, 6, 7, 8],
-  tickRange: 1
+  tickInterval: 2
 };
 
 $(document).ready(function() {
