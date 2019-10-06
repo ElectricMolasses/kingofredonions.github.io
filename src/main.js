@@ -15,22 +15,65 @@ function drawBarChart(data, options, element) {
     throw new Error('drawBarChart @param data | Invalid data type');
   }
 
-  let container = createBarContainer(options);
+  let container = createContainer(options);
+  let header = createTitleBox(options);
+  let barContainer = createBarContainer(options);
+
   element.append(container);
 
   tData = sortInnerArrays([...data]);
 
   MAX = findMax2D(tData);
 
-  container.append(addTicks(options));
+  barContainer.append(addTicks(options));
 
   for (let i = 0; i < tData.length; i++) {
     if (Array.isArray(tData[i])) {
-      container.append(drawStackedBar(tData[i], options));
+      barContainer.append(drawStackedBar(tData[i], options));
     } else {
-      container.append(drawBar(tData[i], options));
+      barContainer.append(drawBar(tData[i], options));
     }
   }
+
+  container.append(header);
+  container.append(barContainer);
+}
+
+function createContainer(options) {
+  let container = $('<div></div>')
+                   .width(options.width)
+                   .css('display', 'flex')
+                   .css('flex-direction', 'column');
+
+  return container;
+}
+
+function createTitleBox(options) {
+  let titleBox = $('<div></div>')
+                  .width(options.width)
+                  .height(50)
+                  .text(options.title)
+                  .css('color', options.titleColour);
+
+  return titleBox;
+}
+
+/*
+* Creates container to house all bar elements.
+* @param  {Object}  options   Object containing all bar chart options.
+* @return {Element}   Returns a HTML element to append bars to.
+*/
+function createBarContainer(options) {
+  let container = $('<div></div>');
+
+  container.width(options.width)
+           .height(options.height)
+           .css('display', 'flex')
+           .css('align-items', 'flex-end')
+           .css('background-color', options.background)
+           .addClass('barChartBox');
+
+  return container;
 }
 
 /*
@@ -61,25 +104,6 @@ function addTicks(options) {
   }
 
   return ticks;
-}
-
-
-/*
-* Creates container to house all bar elements.
-* @param  {Object}  options   Object containing all bar chart options.
-* @return {Element}   Returns a HTML element to append bars to.
-*/
-function createBarContainer(options) {
-  let container = $('<div></div>');
-
-  container.width(options.width)
-           .height(options.height)
-           .css('display', 'flex')
-           .css('align-items', 'flex-end')
-           .css('background-color', options.background)
-           .addClass('barChartBox');
-
-  return container;
 }
 
 /*
