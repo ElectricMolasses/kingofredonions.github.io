@@ -104,6 +104,10 @@ function drawBar(value, options) {
      .text(value)
      .addClass('bar');
 
+  if (typeof options.barLabelColour === 'string') {
+    bar.css('color', options.barLabelColour);
+  }
+
   if (typeof options.barTextAlign !== 'string') {
     options.barTextAlign = 'top';
   }
@@ -128,11 +132,22 @@ function drawStackedBar(values, options) {
 
   let tValues = [...values];
   let colourPointer = 0;
+  let fontColourPointer = 0;
   let stackContainer = createStackContainer(options);
 
   if (tValues.length <= options.stackColours.length)
     colourPointer = tValues.length - 1;
-  else colourPointer = (tValues.length % options.stackColours.length) - 1;
+  else {
+    colourPointer = (tValues.length % options.stackColours.length) - 1;
+    if (colourPointer < 0) colourPointer += options.stackColours.length -1;
+  }
+
+  if (tValues.length <= options.stackLabelColours.length)
+    fontColourPointer = tValues.length - 1;
+  else {
+    fontColourPointer = (tValues.length % options.stackLabelColours.length) - 1;
+    if (fontColourPointer < 0) fontColourPointer += options.stackLabelColours.length;
+  }
 
   for (let i = 0; i < tValues.length; i++) {
     let curHeight;
@@ -145,7 +160,8 @@ function drawStackedBar(values, options) {
     let curBar = drawBar(tValues[i], options).css('margin', 0)
                                              .height(curHeight)
                                              .css('width', '100%')
-                                             .css('background-color', options.stackColours[colourPointer]);
+                                             .css('background-color', options.stackColours[colourPointer])
+                                             .css('color', options.stackLabelColours[fontColourPointer]);
     if (i !== 0) curBar.addClass('lowerStackBar')
       else curBar.addClass('topStackBar');
     curBar.removeClass('bar');
@@ -153,6 +169,10 @@ function drawStackedBar(values, options) {
     if (colourPointer === 0)
       colourPointer = options.stackColours.length - 1;
     else colourPointer--;
+
+    if (fontColourPointer === 0) {
+      fontColourPointer = options.stackLabelColours.length -1;
+    } else fontColourPointer--;
 
     stackContainer.append(curBar);
   }
@@ -239,7 +259,9 @@ const testOptions = {
   title: 'Test Chart',
   titleColour: 'white',
   barColour: 'red',
+  barLabelColour: 'teal',
   stackColours: ['red', 'orange', 'yellow', 'darkred'],
+  stackLabelColours: ['black', 'white'],
   barTextAlign: null,
   barSpacing: 15,
   barAxes: 'x',
