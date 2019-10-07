@@ -18,10 +18,12 @@ function drawBarChart(data, options, element) {
   let container = createContainerCol(options);
   let header = createTitleBox(options);
   let barContainer = createBarContainer(options);
+  let labelContainer = createContainerRow(options);
 
   element.append(container);
 
   tData = sortInnerArrays([...data]);
+  generateLabels(tData, options, labelContainer);
 
   MAX = findMax2D(tData);
 
@@ -37,6 +39,7 @@ function drawBarChart(data, options, element) {
 
   container.append(header);
   container.append(barContainer);
+  container.append(labelContainer);
 }
 
 /*
@@ -60,9 +63,26 @@ function createContainerRow(options) {
   let container = $('<div></div>')
                    .width(options.width)
                    .css('display', 'flex')
-                   .css('flex-direction', 'column');
+                   .css('flex-direction', 'row');
 
   return container;
+}
+
+function generateLabels(values, options, element) {
+  if (options.labels.length !== values.length)
+    throw new Error ("Invalid Value:Labels length.  Must match.");
+
+  element.height(25);
+
+  //Add offset for the tick element inside the bars.
+  element.append($('<div></div>').width(9));
+
+  for (let i = 0; i < options.labels.length; i++) {
+    element.append($('<div></div>')
+                    .text(options.labels[i])
+                    .css('flex-grow', 1)
+                    .css('text-align', 'center'));
+  }
 }
 
 /*
