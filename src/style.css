@@ -14,10 +14,9 @@ body {
 
 #bar-form {
   border-style: solid;
-  width: 800px;
-  min-height: 200px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 #labelContainer {
