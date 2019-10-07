@@ -39,6 +39,10 @@ function drawBarChart(data, options, element) {
   container.append(barContainer);
 }
 
+/*
+* Creates column oriented container.
+* @param  {Object}  options   Main options object.
+*/
 function createContainer(options) {
   let container = $('<div></div>')
                    .width(options.width)
@@ -48,6 +52,11 @@ function createContainer(options) {
   return container;
 }
 
+/*
+* Creates a title box above the bar chart, currently adds to height
+* instead of consuming it.
+* @param  {Object}   options  Main options object.
+*/
 function createTitleBox(options) {
   let titleBox = $('<div></div>')
                   .width(options.width)
@@ -68,6 +77,10 @@ function createTitleBox(options) {
   return titleBox;
 }
 
+/*
+* Live edit of the title text.
+* @param  {String}  text  New title for bar chart.
+*/
 function editTitleText(text) {
   $('#titleText').text(text);
 }
@@ -234,6 +247,12 @@ function createStackContainer(options) {
                          .addClass('stack');
 }
 
+/*
+* Finds height of a bar relative to the user selected height.
+* @param  {Number}  value   Value of the individual bar/bar piece.
+* @param  {Object}  options Main options object.
+* @return {Number}    Height for provided bar value.
+*/
 function relativeHeight(value, options) {
   return (value / MAX) * options.height;
 }
