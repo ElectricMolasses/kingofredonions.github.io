@@ -61,6 +61,7 @@ function createTitleBox(options) {
                   .text(options.title)
                   .css('color', options.titleColour)
                   .css('text-align', 'center')
+                  .css('font-size', options.titleSize)
                   );
 
   return titleBox;
@@ -290,6 +291,7 @@ const testOptions = {
   background: 'grey',
   title: 'Test Chart',
   titleColour: 'white',
+  titleSize: 50,
   barColour: 'red',
   barLabelColour: 'teal',
   stackColours: ['red', 'orange', 'yellow', 'darkred'],
