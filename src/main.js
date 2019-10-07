@@ -382,7 +382,7 @@ const test2Options = {
   tickColor: 'gold'
 };
 
-$(document).ready(function() {
+$(function() {
   drawBarChart(testData, testOptions, $('#bar-form'));
   drawBarChart(test2Data, test2Options, $('#bar-form'));
 });
