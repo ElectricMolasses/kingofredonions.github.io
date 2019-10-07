@@ -15,7 +15,7 @@ function drawBarChart(data, options, element) {
     throw new Error('drawBarChart @param data | Invalid data type');
   }
 
-  let container = createContainer(options);
+  let container = createContainerCol(options);
   let header = createTitleBox(options);
   let barContainer = createBarContainer(options);
 
@@ -43,7 +43,20 @@ function drawBarChart(data, options, element) {
 * Creates column oriented container.
 * @param  {Object}  options   Main options object.
 */
-function createContainer(options) {
+function createContainerCol(options) {
+  let container = $('<div></div>')
+                   .width(options.width)
+                   .css('display', 'flex')
+                   .css('flex-direction', 'column');
+
+  return container;
+}
+
+/*
+* Creates row oriented container.
+* @param  {Object}  options   Main options object.
+*/
+function createContainerRow(options) {
   let container = $('<div></div>')
                    .width(options.width)
                    .css('display', 'flex')
