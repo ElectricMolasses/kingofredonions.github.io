@@ -9,18 +9,26 @@ Bar chart generator that takes an array of numbers, as well as a js object to ge
 
 ## User-end API
 
+#### function drawBarChart(data, options, element)
+Primary function used to create a bar chart.  
+* Data is an array of values for the bars, sub-arrays allow stacked bars.
+* Options is a js Object that has a wide array of options for bar chart creation.  More detail on what options are available listed in features.
+* Element is the html element you wish to append the bar chart to.
+
+#### function editTitleText(text)
+Simple function that takes text and edits the title of the bar chart dynamically, can be set after initial creation.
+
 ## Features
 
 ## Issues and Bugs
+
+Title functionality that takes up some of the user defined height instead of adding to it, as well as resizing to fit font regardless of size.
 
 Right now if you set the title with two bar charts on the page, it will change both.
 
 Animation is causing bar shadow to pop over the labels, and then disappear once animation completes.
 
-
 ## Roadmap
-
-Title functionality that takes up some of the user defined height instead of adding to it, as well as resizing to fit font regardless of size.
 
 Certain functions need to be split into smaller pieces for readability/debugging.  Notably the drawStackedBar function.
 
