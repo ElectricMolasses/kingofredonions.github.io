@@ -47,7 +47,8 @@ Animation is causing bar shadow to pop over the labels, and then disappear once 
 
 Large values relative to the height property will push through the ceiling of the graph.
 
-Ticks don't seem to show for high values, divs likely being collapsed into 0 height elements.
+Ticks don't seem to show for high values on my local repo, divs likely being collapsed into 0 height elements.
+However, ticks are showing when hosted on github pages, but the tick colour property no longer works and everything defaults to white instead.
 
 ## Roadmap
 
