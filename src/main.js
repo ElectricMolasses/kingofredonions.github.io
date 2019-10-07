@@ -23,7 +23,8 @@ function drawBarChart(data, options, element) {
   element.append(container);
 
   tData = sortInnerArrays([...data]);
-  generateLabels(tData, options, labelContainer);
+  if (options.hasOwnProperty('labels'))
+    generateLabels(tData, options, labelContainer);
 
   MAX = findMax2D(tData);
 
@@ -159,7 +160,7 @@ function addTicks(options) {
   for (let i = 0; i < MAX; i++) {
     let tick = $('<div></div>')
          .width(5)
-         .css('border-color', '#000000')
+         .css('border-color', options.tickColour)
          .css('border-width', '2px')
          .css('margin', '0')
          .height(Math.floor(relativeHeight(1, options) * options.tickInterval));
@@ -354,16 +355,34 @@ const testOptions = {
   titleColour: 'white',
   titleSize: 50,
   barColour: 'red',
-  barLabelColour: 'teal',
+  barLabelColour: 'black',
   stackColours: ['red', 'orange', 'yellow', 'darkred'],
-  stackLabelColours: ['black', 'white'],
+  stackLabelColours: ['black', 'gold'],
   barTextAlign: null,
   barSpacing: 15,
-  barAxes: 'x',
   labels: [1, 2, 3, 4, 5, 6, 7, 8],
-  tickInterval: 2
+  tickInterval: 2,
+  tickColor: '#000000'
+};
+
+const test2Data = [2023, 1854, 5, 1930, 1632, 848];
+
+const test2Options = {
+  width: 1200,
+  height: 1000,
+  background: 'black',
+  title: 'Test Reverb',
+  titleColour: 'gold',
+  titleSize: 32,
+  barColour: 'brown',
+  barLabelColour: 'beige',
+  barTextAlign: 'center',
+  barSpacing: 20,
+  tickInterval: 50,
+  tickColor: 'gold'
 };
 
 $(document).ready(function() {
   drawBarChart(testData, testOptions, $('#bar-form'));
+  drawBarChart(test2Data, test2Options, $('#bar-form'));
 });
