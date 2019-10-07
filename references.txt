@@ -27,3 +27,6 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animat
 
 Box shadow lookup
 https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+
+Quick lookup when I realized addId does not exist
+https://stackoverflow.com/questions/2176986/jquery-add-id-instead-of-class?rq=1

@@ -51,9 +51,17 @@ function createContainer(options) {
 function createTitleBox(options) {
   let titleBox = $('<div></div>')
                   .width(options.width)
-                  .height(50)
+                  .height(40)
+                  .css('background', options.background)
+                  .css('display', 'flex')
+                  .css('align-items', 'center')
+                  .css('justify-content', 'center')
+                  .attr('id', 'titleContainer');
+  titleBox.append($('<p></p>')
                   .text(options.title)
-                  .css('color', options.titleColour);
+                  .css('color', options.titleColour)
+                  .css('text-align', 'center')
+                  );
 
   return titleBox;
 }

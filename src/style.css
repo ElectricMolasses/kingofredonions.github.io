@@ -7,6 +7,11 @@ body {
   justify-content: center;
 }
 
+#titleContainer {
+  animation-duration: 1.5s;
+  animation-name: fade-in;
+}
+
 #bar-form {
   border-style: solid;
   width: 800px;
