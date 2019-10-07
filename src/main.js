@@ -72,7 +72,11 @@ function generateLabels(values, options, element) {
   if (options.labels.length !== values.length)
     throw new Error ("Invalid Value:Labels length.  Must match.");
 
-  element.height(25);
+  element.height(25)
+         .css('background', options.background)
+         .attr('id', 'labelContainer')
+         .css('border-top-style', 'solid')
+         .css('border-width', 1);
 
   //Add offset for the tick element inside the bars.
   element.append($('<div></div>').width(9));

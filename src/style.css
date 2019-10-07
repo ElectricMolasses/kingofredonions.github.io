@@ -19,6 +19,11 @@ body {
   display: flex;
 }
 
+#labelContainer {
+  animation-duration: 1.5s;
+  animation-name: fade-in;
+}
+
 .barChartBox {
   animation-duration: 1.5s;
   animation-name: fade-in;
