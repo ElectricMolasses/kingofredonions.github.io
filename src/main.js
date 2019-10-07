@@ -62,9 +62,14 @@ function createTitleBox(options) {
                   .css('color', options.titleColour)
                   .css('text-align', 'center')
                   .css('font-size', options.titleSize)
+                  .attr('id', 'titleText')
                   );
 
   return titleBox;
+}
+
+function editTitleText(text) {
+  $('#titleText').text(text);
 }
 
 /*
