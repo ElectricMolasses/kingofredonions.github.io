@@ -7,6 +7,9 @@ Bar chart generator that takes an array of numbers, as well as a js object to ge
 
 ## Examples
 
+![Example 1](/samples/FirstExample.png)
+![Example 2](/samples/SecondExample.png)
+
 ## User-end API
 
 #### function drawBarChart(data, options, element)
@@ -20,7 +23,21 @@ Simple function that takes text and edits the title of the bar chart dynamically
 
 ## Features
 
+* Custom Width/Height.
+* Background colour.
+* Title text, colour, and size.
+* Bar colours.
+* Bar label colours.
+* Spacing between bars.
+* Top/Center/Bottom label alignment.
+* Stacked/overlapping bars with the same customization options as standard bars.
+* Custom tick intervals along the left side of the chart.
+* Custom colours for said ticks.
+* Additional optional labels that sit under bars along the bottom of the chart.
+
 ## Issues and Bugs
+
+Severly lacking in default values for unused options.
 
 Title functionality that takes up some of the user defined height instead of adding to it, as well as resizing to fit font regardless of size.
 
@@ -28,11 +45,21 @@ Right now if you set the title with two bar charts on the page, it will change b
 
 Animation is causing bar shadow to pop over the labels, and then disappear once animation completes.
 
+Large values relative to the height property will push through the ceiling of the graph.
+
+Ticks don't seem to show for high values, divs likely being collapsed into 0 height elements.
+
 ## Roadmap
 
 Certain functions need to be split into smaller pieces for readability/debugging.  Notably the drawStackedBar function.
 
 Should add functionality to parse strings into the object provided they're JSON.  Unsure whether or not js can do that itself at the moment.
+
+Rework relativeHeight function to work more appropriately with large values.
+
+Rework tick function to work with large values.
+
+Better animation choices for graph, as well as allowing user choice with options object, rather than hard coding them into CSS.
 
 ## Resources
 
